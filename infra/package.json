@@ -1,0 +1,15 @@
+{
+  "name": "online-docs-infra",
+  "version": "1.0.0",
+  "description": "infra script for online-docs with S3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "newgyu@kinoboku.net",
+  "private": true,
+  "dependencies": {
+    "cloudformation-z": "*",
+    "config": "^1.17.1"
+  }
+}
