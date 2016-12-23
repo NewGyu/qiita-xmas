@@ -1,0 +1,18 @@
+version: "2"
+services:
+  santa_production:
+    build: 
+      context: .
+      args:
+        baseurl: "http://xmas.kinoboku.net/"
+    command: sh
+
+  publish:
+    depends_on: ["santa_production"]
+    image: anigeo/awscli
+    environment:
+      AWS_DEFAULT_PROFILE: ${AWS_PROFILE}
+    volumes:
+    - "~/.aws:/root/.aws:ro"
+    volumes_from: ["santa_production"]
+    command: ["s3", "sync", "/usr/share/nginx/html","s3://xmas.kinoboku.net"]

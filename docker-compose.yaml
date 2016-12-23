@@ -1,0 +1,14 @@
+version: "2"
+services:
+  santa:
+    build: 
+      context: .
+      args: 
+        baseurl: "http://localhost:3000/"
+    command: sh
+
+  viewer:
+    depends_on: ["santa"]
+    image: nginx:alpine
+    ports: ["3000:80"]
+    volumes_from: ["santa"]

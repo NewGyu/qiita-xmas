@@ -1,0 +1,3 @@
+[submodule "santa-tracker"]
+	path = santa-tracker
+	url = https://github.com/google/santa-tracker-web.git
