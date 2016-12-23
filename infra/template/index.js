@@ -18,6 +18,24 @@ module.exports = {
                 }
             }
         },
+        "PublicReadable": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+                "Bucket": {
+                    "Ref": "DocumentS3"
+                },
+                "PolicyDocument": {
+                    "Id": "S3PolicyId1",
+                    "Statement": [{
+                        "Sid": "IPAllow",
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "s3:GetObject",
+                        "Resource": `arn:aws:s3:::${DomainName}/*`,
+                    }]
+                }
+            }
+        },
         "DocsDNS": {
             "Type": "AWS::Route53::RecordSet",
             "Properties": {
@@ -32,7 +50,10 @@ module.exports = {
         }
     },
     "Outputs": {
-        "DocumentS3": { "Value": { "Ref": "DocumentS3" } }
+        "DocumentS3": {
+            "Value": {
+                "Ref": "DocumentS3"
+            }
+        }
     }
 }
-
